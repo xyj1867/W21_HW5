@@ -42,7 +42,7 @@ class TestCard(unittest.TestCase):
         card12 = hw5_cards.Card(rank=12)
         X = self.assertEqual(card12.rank_name, "Queen")
 
-        #return X, Y
+        return card12.rank_name, "Queen"
     
     def test_q2(self):
         '''
@@ -151,13 +151,15 @@ class TestCard(unittest.TestCase):
 
         '''
         deck1 = hw5_cards.Deck()
+        len_before_deal = len(deck1.cards)
         card_drop = deck1.deal_card()
         len_before_replace = len(deck1.cards)
         deck1.replace_card(card_drop)
         len_after_replace = len(deck1.cards)
+        self.assertEqual(len_before_deal, len_before_replace+1)
         self.assertEqual(len_after_replace, len_before_replace+1)
         
-        return len_after_replace, len_before_replace+1
+        return len_before_deal, len_after_replace, len_before_replace+1
     
     def test_q8(self):
         '''
